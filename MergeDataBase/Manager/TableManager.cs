@@ -7,6 +7,9 @@ namespace DBDiff.Manager
 {
     public class TableManager : Manager<TableInstance>
     {
+        public IEnumerable<TableInstance> GetAll(DataBaseInstance dataBase)
+        => new TableRepository(dataBase).GetAll();
+
         public override bool Merge(TableInstance source, TableInstance destiny, MergeOption option)
         {
             List<ColumnInstance> SourceColumns = new List<ColumnInstance>();

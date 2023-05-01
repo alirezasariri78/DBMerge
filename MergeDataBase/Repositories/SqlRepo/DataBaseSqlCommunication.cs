@@ -7,7 +7,7 @@ using System.Data.OleDb;
 
 namespace DBDiff.Repositories
 {
-    public class DataBaseSqlCommunication : SqlCommunication<DataBaseInstance, ServerInstance>
+    internal class DataBaseSqlCommunication : SqlCommunication<DataBaseInstance, ServerInstance>
     {
         public DataBaseSqlCommunication(string connectionstring) : base(connectionstring) { }
         public override IEnumerable<DataBaseInstance> GetAll(ServerInstance parent)

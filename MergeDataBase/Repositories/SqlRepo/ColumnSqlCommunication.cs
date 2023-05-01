@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace DBDiff.Repositories
 {
-    public class ColumnSqlCommunication : SqlCommunication<ColumnInstance, TableInstance>
+    internal class ColumnSqlCommunication : SqlCommunication<ColumnInstance, TableInstance>
     {
         private Dictionary<string, string> ColumnType;
         private readonly string _connectionstring;

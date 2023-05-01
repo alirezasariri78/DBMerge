@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DBDiff.Repo
 {
-    public class DataBaseRepository : IEntityManager<DataBaseInstance>, IDisposable
+    internal class DataBaseRepository : IEntityManager<DataBaseInstance>, IDisposable
     {
         private readonly DataBaseSqlCommunication _sqlCommunication;
         private readonly ServerInstance _server;

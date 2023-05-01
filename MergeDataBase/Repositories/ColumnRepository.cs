@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace DBDiff.Manager
 {
-    public class ColumnRepository : IEntityManager<ColumnInstance>, IDisposable
+    internal class ColumnRepository : IEntityManager<ColumnInstance>, IDisposable
     {
         private readonly ColumnSqlCommunication _sqlCommunication;
         private readonly TableInstance _tableInstance;

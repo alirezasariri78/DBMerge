@@ -19,8 +19,8 @@ namespace DBDiff.Manager
 
             foreach (var item in deletedItems)
             {
-               var delres=destinyTableRepository.DeleteTable(item.FullName);
-                if(delres)
+                var delres = destinyTableRepository.DeleteTable(item.FullName);
+                if (delres)
                     destinyTables.Remove(item);
             }
 
@@ -57,5 +57,8 @@ namespace DBDiff.Manager
 
             return true;
         }
+
+        public IEnumerable<DataBaseInstance> GetAll(ServerInstance server)
+      => new DataBaseRepository(server).GetAll();
     }
 }

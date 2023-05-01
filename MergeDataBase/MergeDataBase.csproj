@@ -44,6 +44,7 @@
     <Compile Include="abstracts\IEntityManager.cs" />
     <Compile Include="abstracts\Manager.cs" />
     <Compile Include="Manager\DataBaseManager.cs" />
+    <Compile Include="Manager\ServerManager.cs" />
     <Compile Include="Manager\TableManager.cs" />
     <Compile Include="Models\ColumnInstance.cs" />
     <Compile Include="Models\DataBaseInstance.cs" />

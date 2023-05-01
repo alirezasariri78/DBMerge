@@ -6,7 +6,7 @@ using System.Data;
 
 namespace DBDiff.Repositories
 {
-    public class TableSqlCommunication : SqlCommunication<TableInstance, DataBaseInstance>
+    internal class TableSqlCommunication : SqlCommunication<TableInstance, DataBaseInstance>
     {
         public TableSqlCommunication(string connectionstring) : base(connectionstring)
         {

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DBDiff.Repo
 {
-    public abstract class SqlCommunication<Entity, ParentEntity> : IDisposable where Entity : class
+    internal abstract class SqlCommunication<Entity, ParentEntity> : IDisposable where Entity : class
     {
         protected OleDbConnection _sqlconnection;
         public SqlCommunication(string connectionstring)

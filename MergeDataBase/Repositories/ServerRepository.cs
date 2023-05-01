@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DBDiff.Repo
 {
-    public class ServerRepository
+    internal class ServerRepository
     {
         private readonly ServerType _serverType;
         public ServerRepository(ServerType type) => _serverType = type;
