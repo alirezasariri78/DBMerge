@@ -1,5 +1,6 @@
 ﻿using DBDiff.Models;
 using DBDiff.Repo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,6 +8,10 @@ namespace DBDiff.Manager
 {
     public class DataBaseManager : Manager<DataBaseInstance>
     {
+        private readonly DataBaseRepository _repository;
+        public DataBaseManager(ServerInstance serverInstance)
+        => _repository = new DataBaseRepository(serverInstance);
+
         public override bool Merge(DataBaseInstance source, DataBaseInstance destiny, MergeOption option)
         {
             var sourceTableRepository = new TableRepository(source);
@@ -58,7 +63,18 @@ namespace DBDiff.Manager
             return true;
         }
 
-        public IEnumerable<DataBaseInstance> GetAll(ServerInstance server)
-      => new DataBaseRepository(server).GetAll();
+        public IEnumerable<DataBaseInstance> GetAll()
+      => _repository.GetAll();
+
+
+        public DataBaseInstance Find(Func<DataBaseInstance, bool> where)
+        => _repository.Find(where);
+
+
+
+        public IEnumerable<DataBaseInstance> GetAll(Func<DataBaseInstance, bool> where)
+        => _repository.GetAll(where);
+
+
     }
 }
