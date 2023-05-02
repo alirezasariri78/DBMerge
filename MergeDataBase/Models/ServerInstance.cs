@@ -14,7 +14,6 @@
 
         public int ServerId { get; set; }
         public string Name { get; set; }
-        public bool IsLocal { get; set; }
         public ServerAuthentication Authentication { get; set; }
     }
 }

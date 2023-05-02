@@ -1,6 +1,6 @@
 ﻿namespace DBDiff.queries
 {
-    public class DataBaseQueries
+    internal class DataBaseQueries
     {
     }
 }

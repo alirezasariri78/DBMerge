@@ -1,6 +1,6 @@
 ﻿namespace DBDiff.Models
 {
-    public class ConnectionStrings
+    internal class ConnectionStrings
     {
         public static string GetConnectionString(ServerInstance serverInstance, DataBaseInstance dataBaseInstance = null)
         {

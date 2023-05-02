@@ -2,16 +2,19 @@
 using DBDiff.Repo;
 using System.Collections.Generic;
 
-namespace MergeDataBase.Manager
+namespace DBDiff.Manager
 {
     public class ServerManager
     {
-        private readonly ServerType _serverType;
-        public ServerManager(ServerType type)
-        {
-            _serverType = type;
-        }
-        public IEnumerable<ServerInstance> GetAll(ServerAuthentication authentication, string servername)
-          => new ServerRepository(_serverType).GetServersInstances(authentication, servername);
+        private readonly ServerRepository _serverRepository;
+        public ServerManager(ServerAuthentication authentication, string serverName = ".")
+          => _serverRepository = new ServerRepository(authentication, serverName);
+
+        public IEnumerable<ServerInstance> GetAllLocalServers(ServerAuthentication authentication, string servername)
+          => _serverRepository.GetLocalServersInstances();
+
+        public ServerInstance GetInstance()
+            => _serverRepository.GetInstance();
+
     }
 }

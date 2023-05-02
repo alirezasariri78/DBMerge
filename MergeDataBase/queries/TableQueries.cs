@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DBDiff.queries
 {
-    public class TableQueries
+    internal class TableQueries
     {
         public static string DeleteTableQuery(string tableName)
             => $"DROP TABLE {tableName};";

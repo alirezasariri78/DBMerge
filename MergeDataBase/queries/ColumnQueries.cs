@@ -1,6 +1,6 @@
 ﻿namespace DBDiff.queries
 {
-    public class ColumnQueries
+    internal class ColumnQueries
     {
         public static string GetColumnQuery(string tablename)
        => $"SELECT * FROM {tablename}";

@@ -2,7 +2,7 @@
 
 namespace DBDiff.Models
 {
-    public  class SqlQueries
+    internal class SqlQueries
     {
         public static string GetDbQuery = @"use master  select * from sys.databases";
     }

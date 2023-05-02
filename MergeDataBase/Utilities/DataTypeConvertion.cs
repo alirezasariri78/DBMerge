@@ -5,7 +5,7 @@ using System.Data.OleDb;
 
 namespace DBDiff.Utilities
 {
-    public static class TypeExtension
+    internal static class TypeExtension
     {
         public static SqlDbType ToSqlDbType(this Type clrType)
         {

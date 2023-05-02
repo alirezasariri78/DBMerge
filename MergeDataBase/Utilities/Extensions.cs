@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DBDiff.Utilities
 {
-    public static class Extensions
+    internal static class Extensions
     {
         public static bool IsFloatType(this string val)
         {

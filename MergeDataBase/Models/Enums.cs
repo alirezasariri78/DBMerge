@@ -9,9 +9,4 @@
     {
         Add,ChangeType, Delete
     }
-    public enum ServerType
-    { 
-        Local,Remote
-    }
-
 }
