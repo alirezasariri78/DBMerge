@@ -47,9 +47,9 @@ namespace DBDiff.Manager
             switch (operationType)
             {
                 case AlterOperationType.ChangeType:
-                    return ColumnQueries.UpdateColumnQuery(columnInstance.Name, tablename, columnInstance.ColumnType, columnInstance.Nullable);
+                    return ColumnQueries.UpdateColumnQuery(columnInstance, tablename, columnInstance.ColumnType, columnInstance.Nullable);
                 case AlterOperationType.Add:
-                    return ColumnQueries.AddColumnQuery(columnInstance.Name, tablename, columnInstance.ColumnType);
+                    return ColumnQueries.AddColumnQuery(columnInstance.Name, tablename, columnInstance.ColumnType, columnInstance.Nullable);
                 case AlterOperationType.Delete:
                     return ColumnQueries.DeleteColumnQuery(columnInstance.Name, tablename);
                 default: return "";

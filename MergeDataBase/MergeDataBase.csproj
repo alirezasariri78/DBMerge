@@ -66,6 +66,7 @@
     <Compile Include="Repositories\SqlRepo\DataBaseSqlCommunication.cs" />
     <Compile Include="Repositories\SqlRepo\TableSqlCommunication.cs" />
     <Compile Include="Repositories\TableRepository.cs" />
+    <Compile Include="Utilities\ColumnIntermediaryType.cs" />
     <Compile Include="Utilities\ConnectionStrings.cs" />
     <Compile Include="Utilities\DataTypeConvertion.cs" />
     <Compile Include="Utilities\Exceptions\LogicalException.cs" />

@@ -38,7 +38,7 @@ namespace DBDiff.Manager
                     destinyTableRepository.CreateTable(columnRepository.GetAll(), sourceTable.FullName);
                 }
                 else //Merge Table
-                    new TableManager(new DataBaseInstance()).Merge(sourceTable, destinyTables.Single(c => c.FullName == sourceTable.FullName), option);
+                    new TableManager(destiny).Merge(sourceTable, destinyTables.Single(c => c.FullName == sourceTable.FullName), option);
             }
 
             var sourceDataBaseRepository = new DataBaseRepository(source.Server, source);

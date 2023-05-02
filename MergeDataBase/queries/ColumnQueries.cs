@@ -1,4 +1,8 @@
-﻿namespace DBDiff.queries
+﻿using DBDiff.Models;
+using MergeDataBase.Utilities;
+using System;
+
+namespace DBDiff.queries
 {
     internal class ColumnQueries
     {
@@ -6,11 +10,20 @@
        => $"SELECT * FROM {tablename}";
 
 
-        public static string UpdateColumnQuery(string ColumnName, string tablename, string type, bool nullable)
+        public static string UpdateColumnQuery(ColumnInstance col, string tablename, string type, bool nullable)
         {
             string nullState = nullable ? "Null" : "Not Null";
-            return $@"ALTER TABLE {tablename}
-                ALTER COLUMN {ColumnName} {type} {nullState};";
+            string result = "";
+
+            if (ColumnIntermediaryType.HasConflict(col.ColumnType.ToLower(), type.ToLower()))
+            {
+                result += DeleteColumnQuery(col.Name, tablename);
+                result += AddColumnQuery(col.Name, tablename, type,nullable);
+                return result;
+            }
+            else
+                return $@"ALTER TABLE {tablename}
+                ALTER COLUMN {col.Name} {type} {nullState};";
         }
 
 
@@ -18,11 +31,14 @@
             => $@"ALTER TABLE {tablename}
                   DROP COLUMN {ColumnName};";
 
-        public static string AddColumnQuery(string ColumnName, string tablename, string colType)
-          => $@"ALTER TABLE {tablename}
-                ADD {ColumnName} {colType};";
+        public static string AddColumnQuery(string ColumnName, string tablename, string colType, bool nullable)
+        {
+            string nullState = nullable ? "Null" : "Not Null";
+            return $@"ALTER TABLE {tablename}
+                ADD {ColumnName} {colType} {nullState};";
+        }
 
-        public static string SetColumnData(string columnName, string tableName,string data="NULL")
+        public static string SetColumnData(string columnName, string tableName, string data = "NULL")
             => $@"update {tableName} 
                  set {columnName}={data}";
     }
