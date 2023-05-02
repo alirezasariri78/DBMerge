@@ -17,6 +17,7 @@ namespace DBDiff.Models
         public bool HasMaxCharLen { get => CharacterMaxLength > 4000 ? true : false; }
         public int NumericPrecision { get; set; }
         public int NumericScale { get; set; }
+        public string DefualtValue { get; set; }
         public bool IsFloatType { get => ColumnType.IsFloatType(); }
         public ForeignKeyCONSTRAINT ForeignKeyCONSTRAINT { get; set; }
 

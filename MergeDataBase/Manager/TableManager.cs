@@ -45,19 +45,19 @@ namespace DBDiff.Manager
                 else //Merge column
                 {
                     var desColumn = DestinyColumns.Single(c => c.Name == sourceColumn.Name);
-                    if (desColumn.ColumnType != sourceColumn.ColumnType || desColumn.Nullable != sourceColumn.Nullable)
+                    if (RequireUpdate(desColumn, sourceColumn))
                     {
                         if (desColumn.ColumnType != sourceColumn.ColumnType && !sourceColumn.Nullable)
                         {
-                            destinyColumnRepository.UpdateColumn(desColumn, "NVARCHAR(MAX)", true);
+                            destinyColumnRepository.UpdateColumn(desColumn, "NVARCHAR(MAX)", true, sourceColumn.DefualtValue);
                             destinyColumnRepository.SetColumnData(desColumn.Name, destiny.FullName, Extensions.GetTypeDefualtValue(sourceColumn.ColumnType));
                         }
                         else if (desColumn.ColumnType != sourceColumn.ColumnType && sourceColumn.Nullable)
                         {
-                            destinyColumnRepository.UpdateColumn(desColumn, "NVARCHAR(MAX)", true);
+                            destinyColumnRepository.UpdateColumn(desColumn, "NVARCHAR(MAX)", true, sourceColumn.DefualtValue);
                             destinyColumnRepository.SetColumnData(desColumn.Name, destiny.FullName, "NULL");
                         }
-                        destinyColumnRepository.UpdateColumn(desColumn, sourceColumn.ColumnType, sourceColumn.Nullable);
+                        destinyColumnRepository.UpdateColumn(desColumn, sourceColumn.ColumnType, sourceColumn.Nullable, sourceColumn.DefualtValue);
                     }
                 }
             }
@@ -67,5 +67,11 @@ namespace DBDiff.Manager
 
             return true;
         }
+
+        private bool RequireUpdate(ColumnInstance desColumn, ColumnInstance sourceColumn)
+       => desColumn.ColumnType != sourceColumn.ColumnType ||
+            desColumn.Nullable != sourceColumn.Nullable ||
+            desColumn.DefualtValue != sourceColumn.DefualtValue;
+
     }
 }

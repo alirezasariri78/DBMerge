@@ -30,8 +30,8 @@ namespace DBDiff.Manager
         public List<ColumnInstance> GetAll(Func<ColumnInstance, bool> where)
         => GetAll().Where(where).ToList();
 
-        public bool UpdateColumn(ColumnInstance DestinycolumnInstance, string newType, bool Nullable)
-           => _sqlCommunication.ExecQuery(ColumnQueries.UpdateColumnQuery(DestinycolumnInstance, DestinycolumnInstance.Table.Name, newType, Nullable));
+        public bool UpdateColumn(ColumnInstance DestinycolumnInstance, string newType, bool sourceNullable,string sourceDefualtvalue)
+           => _sqlCommunication.ExecQuery(ColumnQueries.UpdateColumnQuery(DestinycolumnInstance, DestinycolumnInstance.Table.Name, newType, sourceNullable, sourceDefualtvalue));
 
 
         public bool DeleteColumn(ColumnInstance columnInstance)
@@ -39,9 +39,9 @@ namespace DBDiff.Manager
 
 
         public bool AddColumn(ColumnInstance columnInstance)
-                    => _sqlCommunication.ExecQuery(ColumnQueries.AddColumnQuery(columnInstance.Name, columnInstance.Table.Name, columnInstance.ColumnType,columnInstance.Nullable));
+                    => _sqlCommunication.ExecQuery(ColumnQueries.AddColumnQuery(columnInstance, columnInstance.ColumnType, columnInstance.Table.Name, columnInstance.DefualtValue));
 
-        public bool SetColumnData(string columnName, string tableName,string data)
+        public bool SetColumnData(string columnName, string tableName, string data)
                     => _sqlCommunication.ExecQuery(ColumnQueries.SetColumnData(columnName, tableName, data));
 
     }

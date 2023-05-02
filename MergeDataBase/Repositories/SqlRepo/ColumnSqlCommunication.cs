@@ -1,7 +1,6 @@
 ﻿using DBDiff.Models;
 using DBDiff.Repo;
 using DBDiff.Utilities;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -35,6 +34,10 @@ namespace DBDiff.Repositories
 
             foreach (DataRow col in columnSchema.Rows)
             {
+                if(parent.Name.ToLower().Contains("stage") && col["COLUMN_NAME"].ToString().ToLower().Contains("progress"))
+                {
+
+                }
                 var colType = ((OleDbType)col["DATA_TYPE"].ToString().ToInt()).ToOleDbTypeToString();
                 yield return new ColumnInstance()
                 {
@@ -49,6 +52,7 @@ namespace DBDiff.Repositories
                     NumericPrecision = col["NUMERIC_PRECISION"].ToString().ToInt(),
                     NumericScale = col["NUMERIC_SCALE"].ToString().ToInt(),
                     ForeignKeyCONSTRAINT = GetForeignKeyCONSTRAINT(foreignKeyCONSTRAINTs, parent.Name, col["COLUMN_NAME"].ToString()),
+                    DefualtValue = col["COLUMN_DEFAULT"].ToString()
                 };
             }
         }
@@ -70,6 +74,6 @@ namespace DBDiff.Repositories
         private ForeignKeyCONSTRAINT GetForeignKeyCONSTRAINT(List<ForeignKeyCONSTRAINT> collection, string tableName, string columnName)
            => collection.FirstOrDefault(c => c.FK_TABLE_NAME.ToLower() == tableName.ToLower()
                                          && c.FK_COLUMN_NAME == columnName);
-    
+
     }
 }
